@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Words</title>
+    <link rel='stylesheet' href='../css/style.css' />
+    <link rel='stylesheet' href='../bower_components/bootstrap/dist/css/bootstrap.min.css' />
+    <link rel='stylesheet' href='../bower_components/components-font-awesome/css/fontawesome-all.min.css' />
+
+</head>
+<body >
+
+    <div class="center" >
+            <div class="alert alert-success hide" id="correct-ans">
+                    <strong>Correct!</strong> Congrats, word is correct.
+            </div>
+            <div class="alert alert-danger hide" id="wrong-ans">
+                    <strong>Wrong!</strong> Sorry, the spelling is wrong.
+            </div>
+            <input type="hidden" id="word" value='<%=wordObj.word%>'/>
+            <input type="hidden" id="index" value='<%=index%>'/>
+            <% if(wordObj.wrong) {%>
+                <input type="hidden" id="wrong" value='true'/>
+            <% }else{ %>
+                <input type="hidden" id="wrong" value='false'/>
+            <% } %>
+        <% if(!wordObj.delete){%>
+            <div calss="row">
+                <div class="col-sm-12">
+                    <span><%= index %>&nbsp;: &nbsp;</span>
+                        <div class="fa fa-volume-up" id="voice">
+                            <span id ="curr-answer" class="hide" >&nbsp : &nbsp <%= wordObj.word %></span>
+                            
+                        </div>
+                </div>
+            </div>
+            <% for(var i=0;i<wordObj.meaning.length;i++) { %>
+                <div class="container box">
+                    <div class="row">
+                        <div class="col-sm-12">
+                                <span><%= wordObj.meaning[i].type %>&nbsp : &nbsp <%= wordObj.meaning[i].definition %></span>
+                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                                <span>e.g. &nbsp  &nbsp: &nbsp<%= wordObj.meaning[i].example %></span>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+            <% }%>
+            <div class="ansArea">
+                <div>
+                        <span >Ans :</span>
+                        <input type="text" id="answer" name="answer" autofocus/>
+                </div><br/>
+                <div>
+                        <span >notes :</span>
+                        <% if(wordObj.notes) {%>
+                        <textarea id="notes" rows="5px" cols="40px" value="<%=wordObj.notes%>"><%=wordObj.notes%></textarea>
+                        <%}else{%>
+                        <textarea id="notes" rows="5px" cols="40px" ></textarea>
+                        <%}%>
+                </div>
+            </div>
+        <%}else{%>
+        <div class="alert alert-danger">
+                <strong>Delete!</strong> CurrentWord is deleted.
+        </div>
+        <%}%>
+        <div class="navigate">
+            <button class="btn-warning" type="button" id="previous">Prev</button>
+            <button class="btn-success float-center" type="button" id="save">Save</button>
+            <button class="btn-warning" type="button" id="check">check</button>
+            <button class="btn-danger" type="button" id="delete">Delete</button>
+            <button class="btn-warning float-right" type="button" id="next">Next</button>
+        </div>
+    </div>
+
+<script>
+    function captureKeyBoard(e){
+        console.log(e.which);
+        if(e.which==44 || e.which=='44'){
+            loadPrevious();
+        } 
+    }
+</script>
+    <script type= "text/javascript" src='../bower_components/jquery/dist/jquery.min.js'></script>
+    <script type= "text/javascript" src='../bower_components/bootstrap/dist/js/bootstrap.min.js'></script>
+
+    <script type= "text/javascript" src='../javascripts/main.js'></script>
+    
+</body>
+</html>
