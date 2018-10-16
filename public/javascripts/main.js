@@ -135,4 +135,8 @@ $(document).ready(function(){
         var msg = new SpeechSynthesisUtterance(word);
         window.speechSynthesis.speak(msg);
     });
+
+    $('#play').click(function(){
+        $( "#voice" ).trigger( "click" );
+    });
 });
