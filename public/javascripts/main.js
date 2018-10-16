@@ -112,6 +112,21 @@ $(document).ready(function(){
         });**/
     });
 
+    $('#save-json').click(function(){
+        $.ajax({
+            url: '/writeLatest',
+            type: 'GET',
+            data: {},
+            success: function(data) {
+            console.log('Save json is success');
+            },
+            error: function(e) {
+            console.log('save json is failed');
+            console.log(e.message);
+            }
+        });
+    });
+    
     $('#check').click(function(){
         var currAns = ($('#word').val()).toLowerCase().trim();
         var usrAns =  ($('#answer').val()).toLowerCase().trim();

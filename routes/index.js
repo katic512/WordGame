@@ -62,7 +62,8 @@ function formModel(startIndex){
     }
   var model = {
     wordObj:outJson[startIndex],
-    index:startIndex          
+    index:startIndex,
+    count:outJson.length          
     };
     return model;
 }
