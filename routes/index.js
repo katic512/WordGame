@@ -27,9 +27,10 @@ router.get('/word/:index?', function(req, res, next) {
 
 
 router.delete('/word/:index', function(req, res, next) {
-  console.log('delete word');
+ 
   var index = req.params.index;
   console.log("index ::"+index);
+  console.log('delete word router handler for index ::'+index);
   outJson[index].delete=true;
   index++;
   var model = formModel(index);
@@ -74,6 +75,8 @@ router.get('/writeLatest', function(req, res, next) {
   for(var i=0;i<outJson.length;i++){
     if(!outJson[i].delete){
       tempJson.push(outJson[i]);
+    }else{
+      console.log('word to be deleted :: '+outJson[i].word);
     }
   }
   outJson=tempJson;

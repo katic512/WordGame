@@ -57,6 +57,7 @@ $(document).ready(function(){
     });
     $('#delete').click(function(){
         var index = parseInt($('#index').val());
+        console.log('delete called for word index :: '+ index);
         $.ajax({
             url: '/word/'+index,
             type: 'DELETE',
