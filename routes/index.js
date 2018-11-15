@@ -72,13 +72,19 @@ function formModel(startIndex){
 
 router.get('/writeLatest', function(req, res, next) {
   var tempJson = [];
+  var count =0;
+  var lastDeleteIndex=0;
   for(var i=0;i<outJson.length;i++){
     if(!outJson[i].delete){
       tempJson.push(outJson[i]);
     }else{
+		count++;
+		lastDeleteIndex=i;
       console.log('word to be deleted :: '+outJson[i].word);
     }
   }
+  lastDeleteIndex = lastDeleteIndex-count;
+  startIndex = (lastDeleteIndex<0)?0:lastDeleteIndex;
   outJson=tempJson;
   restApiHelper.writeLatestFile(tempJson);
   res.send('respond with a resource');
