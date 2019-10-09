@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var restApiHelper = require('../lib/restApiHelper');
-var outJson = require('../constants/out.json');
+var outJson = require('../constants/out2.json');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   restApiHelper.writeToFile();

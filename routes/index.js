@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var restApiHelper = require('../lib/restApiHelper');
-var outJson = require('../constants/out.json');
+var outJson = require('../constants/out2.json');
 var startIndex=0;
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -11,6 +11,21 @@ router.get('/', function(req, res, next) {
  // restApiHelper.doSearch();
   res.render('index', { title: 'Express' });
 
+});
+
+router.get('/doSearch', function(req, res, next) {
+
+  var now = new Date();
+  console.log(now.toISOString());
+  restApiHelper.doSearch();
+  res.render('index', { title: 'Express' });
+
+});
+
+
+router.get('/writeToInput', function(req, res, next) {
+  restApiHelper.replaceInputByOuput();
+  res.render('index', { title: 'Express' });
 });
 
 /* GET setIndex */
